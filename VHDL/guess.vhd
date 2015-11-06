@@ -1,3 +1,18 @@
+-- -------------------------------------------------------------
+-- File Name: guess.vhd
+-- Last Modified: 08/19/15
+-- Author: Kyler Callahan
+-- -------------------------------------------------------------
+
+
+-- -------------------------------------------------------------
+-- 
+-- Module: guess
+-- Hierarchy Level: 2
+-- This module computes the inital ynot for Newtons method
+-- Module takes in a 32 bit fixed point number. Decimal point being at 16
+--
+-- -------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.NUMERIC_STD.ALL;
@@ -60,12 +75,12 @@ END component;
 	signal ynot_odd	 : unsigned(127 downto 0);
 	signal ynot			 : unsigned(31 downto 0);
 	
-	constant invrt2	: unsigned := x"00000000B5040000";
+	constant invrt2	: unsigned := x"00000000B5040000";  --1/sqrt(2)
 	
 
 begin
-	w <= 32; --32
-	f <= 16; --16
+	w <= 32; -- Word Length
+	f <= 16; -- Decimal Point
 	x <= unsigned(num);
 ------------------------------------------------------------------------------------
 --Component Instantiation
@@ -93,7 +108,7 @@ begin
 
 ------------------------------------------------------------------------------------
 --Processes
-    beta <= w - f - TO_INTEGER(unsigned(z)) - 1;
+    beta <= w - f - TO_INTEGER(unsigned(z)) - 1; 
     xB_LUT_addr <= STD_LOGIC_VECTOR(xBeta_calc(15 downto 2));
 	xBeta <= x"0000"&unsigned(xB_LUT_ans);
 	xAlpha <= xAlpha_calc;
@@ -142,7 +157,7 @@ begin
 		end if;
 	end process;
 	
-	ynot_proc : process(clk, reset)
+	ynot_proc : process(clk, reset)  -- Calculates Ynot by multiplying Xalpha and Xbeta together
 	begin
 		if reset = '1' then
 			

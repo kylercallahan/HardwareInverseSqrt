@@ -1,3 +1,19 @@
+-- -------------------------------------------------------------
+-- File Name: rsqrt.vhd
+-- Last Modified: 08/24/15
+-- Author: Kyler Callahan
+-- -------------------------------------------------------------
+
+
+-- -------------------------------------------------------------
+-- 
+-- Module: rsqrt
+-- Hierarchy Level: 0
+-- Top level component for calulating the inverse square root of a number using Newtons method
+-- Module takes in a 32 bit fixed point number. Decimal point being at 16 and calculates its invers sqare root
+--
+-- -------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;

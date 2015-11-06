@@ -1,3 +1,19 @@
+-- -------------------------------------------------------------
+-- File Name: guess.vhd
+-- Last Modified: 08/19/15
+-- Author: Kyler Callahan
+-- -------------------------------------------------------------
+
+
+-- -------------------------------------------------------------
+-- 
+-- Module: guess
+-- Hierarchy Level: 1
+-- This takes the initial calculated y0 from guess and itterates through 3 times
+-- Module takes in a 32 bit fixed point number. Decimal point being at 16
+--
+-- -------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.NUMERIC_STD.ALL;
@@ -70,7 +86,7 @@ begin
 		if reset = '1' then
 			count <= 0;
 		elsif clk'event and clk = '1' then
-			if count < 7 then
+			if count < 7 then  -- There is a 7 clock delay from y0 before any data comes out of it
 				count <= count +1; 
 			elsif count = 7 then --use y0 
 --				--yn1 <= (y0_calc*(3-(x*(y0_calc*y0_calc))))/2; --Newtons method math
